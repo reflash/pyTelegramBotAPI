@@ -236,7 +236,7 @@ def forward_message(token, chat_id, from_chat_id, message_id, disable_notificati
 
 
 def send_photo(token, chat_id, photo, caption=None, reply_to_message_id=None, reply_markup=None,
-               parse_mode=None, disable_notification=None):
+               parse_mode=None, disable_notification=None, timeout=None):
     method_url = r'sendPhoto'
     payload = {'chat_id': chat_id}
     files = None
@@ -254,6 +254,8 @@ def send_photo(token, chat_id, photo, caption=None, reply_to_message_id=None, re
         payload['parse_mode'] = parse_mode
     if disable_notification:
         payload['disable_notification'] = disable_notification
+    if timeout:
+        payload['connect-timeout'] = timeout
     return _make_request(token, method_url, params=payload, files=files, method='post')
 
 

@@ -486,7 +486,7 @@ class TeleBot:
         return apihelper.delete_message(self.token, chat_id, message_id)
 
     def send_photo(self, chat_id, photo, caption=None, reply_to_message_id=None, reply_markup=None,
-                   parse_mode=None, disable_notification=None):
+                   parse_mode=None, disable_notification=None, timeout=None):
         """
         Use this method to send photos.
         :param disable_notification:
@@ -496,11 +496,12 @@ class TeleBot:
         :param parse_mode
         :param reply_to_message_id:
         :param reply_markup:
+        :param timeout:
         :return: API reply.
         """
         return types.Message.de_json(
             apihelper.send_photo(self.token, chat_id, photo, caption, reply_to_message_id, reply_markup,
-                                 parse_mode, disable_notification))
+                                 parse_mode, disable_notification, timeout))
 
     def send_audio(self, chat_id, audio, caption=None, duration=None, performer=None, title=None,
                    reply_to_message_id=None, reply_markup=None, parse_mode=None, disable_notification=None,
